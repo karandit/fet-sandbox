@@ -13,18 +13,18 @@ install:
 
 script: qmake && make sub-src-src-cl-pro
 
-after_success: 
+after_success:
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then ./fet-cl --version; fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then tar -zcvf fet-cl-$TRAVIS_OS_NAME-$TRAVIS_TAG.tar.gz fet-cl; fi
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then ls -lR; fi
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then git status; fi
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then ./fet-cl.app/Contents/MacOS/fet-cl --version; fi
-- if [ "$TRAVIS_OS_NAME" == "osx" ]; then tar -zcvf fet-cl-$TRAVIS_OS_NAME-$TRAVIS_TAG.tar.gz --directory=fet-cl.app/Contents/MacOS/ fet-cl; fi
+- if [ "$TRAVIS_OS_NAME" == "osx" ]; then tar -zcvf fet-cl-$TRAVIS_OS_NAME-$TRAVIS_TAG.tar.gz fet-cl.app; fi
 
 deploy:
   provider: releases
   api_key:
-    secure: Dm4/NEMzF1RvQUiOZ06PUwHIz8AbmaUJm6iN6txxDUdRjNyEK8Wi3om7847eQBgBfmnqAH+0vOf4I05u17wbCBR3qroW1z2XVciNQeQaQbXuLZ7zVAEIORms1/LvaNKcX8qMoNLZCsb0nh6a11P1g8NLAfWZnjMay4Xd+oSSOfc=
+    secure: QHCYwiawnmyn2DsM/fw9L8znOdOKmTbq5ZiOV7gjrNPDC5TEYP/dTzB9WvexzUEtCBL9J90cGMwmHU9xbRHfAYJxPaLbtJqF6LkjWVYRVBdMKE4wg8jlkVTX/LNK3aN3JfiIwHh9MJAHVfhQw1SmX9BP9zXQFr8phEN8brMr+HYrATPh7lCY+hYA/fTe1sVAS2nVp1PikpqhDRMBlcQcaqQHEjFUXx+ykewlb1quUXWE8Adgc6StotEIn0b/Ut3DhHzhLNPT1apYFks1/w/clb9+EDsBw2gwRZTQkc/UWEzAqCidlX+P27QTK5SdHu6e5cSV9Rec6vUGtMTu0heuRLHqd3q/FmI79bgUfbft58qVI389Kbi8Vdy5ZP8OtKLVQZEk8y2a1IURGaLa9BJ4/46K8myyee/CLTmiNUfQIWVssGrxazAq1AckBTKg28NfxaxBLF5agUHXN++ELELX3+uHWpqNrQC/G/5g3gGcYI0CsF5z4S/D2fR3wrsE87Vy05nZQ0VhCC3paGB4ETWNVwm0O1stkF7dWC462z7Dk/28nSL80UImaOzGZJQiDVUUqz4PLgtq2K89OBlnBZJFHQXxRAmM19fFYpY/+zJtNiynt6Hj5IH6Lt9eNDLFGEs176IsJ3ZnrLm8EcP7U8KxwkmdzUpk07yQvP9oMe2jQdU=
   file: fet-cl-$TRAVIS_OS_NAME-$TRAVIS_TAG.tar.gz
   skip_cleanup: true
   on:
